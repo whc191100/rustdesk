@@ -288,22 +288,8 @@ void runMultiWindow(
 
 void runConnectionManagerScreen() async {
   await initEnv(kAppTypeConnectionManager);
-  final hide = await bind.cmGetConfig(name: "hide_cm") == 'true';
-  gFFI.serverModel.hideCm = hide;
-  if (hide) {
-    // 完全跳过窗口创建
-    return;
-  } else {
-    _runApp(
-      '',
-      const DesktopServerPage(),
-      MyTheme.currentThemeMode(),
-    );
-    await showCmWindow(isStartup: true);
-  }
-  setResizable(false);
-  // Start the uni links handler and redirect links to Native, not for Flutter.
-  listenUniLinks(handleByFlutter: false);
+  // 直接不创建窗口，完全跳过窗口创建过程
+  return;
 }
 
 bool _isCmReadyToShow = false;
