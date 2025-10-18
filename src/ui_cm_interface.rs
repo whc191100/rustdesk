@@ -175,6 +175,7 @@ impl<T: InvokeUiCM> ConnectionManager<T> {
             .unwrap()
             .retain(|_, c| !(c.disconnected && c.peer_id == client.peer_id));
         CLIENTS.write().unwrap().insert(id, client.clone());
+        self.ui_handler.add_connection(&client);
     }
 
     #[inline]
